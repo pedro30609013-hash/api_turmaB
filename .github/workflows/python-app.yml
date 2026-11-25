@@ -48,4 +48,24 @@ jobs:
           push: true
           tags: pedrohenriquesantos7/api_homologacao:latest
    
-    
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy na EC2
+        uses: appleboy/ssh-action@1.0.3
+        with:
+            host: 3.220.166.64
+            username: ubuntu
+            key: ${{secrets.CHAVE}}
+            script: |
+                echo "Acesso Liberado"
+                sudo docker pull pedrohenriquesantos7/api_homologacao:latest
+                sudo docker stop api_homologacao 2>/dev/null || true
+                sudo docker rm api_homolocao 2>/dev/null || true
+                
+                # Instalar nova versao
+                sudo docker run --name api_homologacao -d -p 80:80 pedrohenriquesantos7/api_homologacao:latest
+
+                
