@@ -63,7 +63,7 @@ jobs:
                 echo "Acesso Liberado"
                 sudo docker pull pedrohenriquesantos7/api_homologacao:latest
                 sudo docker stop api_homologacao 2>/dev/null || true
-                sudo docker rm api_homolocao 2>/dev/null || true
+                sudo docker rm api_homologacao 2>/dev/null || true
                 
                 # Instalar nova versao
                 sudo docker run --name api_homologacao -d -p 80:8080 pedrohenriquesantos7/api_homologacao:latest
