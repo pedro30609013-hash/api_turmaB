@@ -49,7 +49,7 @@ jobs:
           tags: pedrohenriquesantos7/api_homologacao:latest
    
   deploy:
-    needs: build
+    needs: Imagem
     runs-on: ubuntu-latest
 
     steps:
